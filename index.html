@@ -1,1 +1,574 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enri Madam 🤍</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#050507;
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+.app{
+  width:100%;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.04);
+  transition:opacity .8s ease,transform 1s ease;
+}
+
+.slide.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.slide::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.05),
+    rgba(0,0,0,.15) 45%,
+    rgba(0,0,0,.85)
+  );
+}
+
+.content{
+  position:absolute;
+  z-index:5;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:35px 25px 45px;
+  text-align:center;
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.7;
+  margin-bottom:12px;
+}
+
+h1{
+  font-family:Georgia,serif;
+  font-size:40px;
+  font-weight:400;
+  line-height:1.05;
+  margin-bottom:12px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.6;
+  color:rgba(255,255,255,.85);
+  max-width:360px;
+  margin:auto;
+}
+
+.next{
+  margin-top:25px;
+  padding:14px 24px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.1);
+  color:white;
+  backdrop-filter:blur(10px);
+  font-size:14px;
+}
+
+.next:active{
+  transform:scale(.95);
+}
+
+.progress{
+  position:absolute;
+  z-index:20;
+  top:15px;
+  left:15px;
+  right:15px;
+  display:flex;
+  gap:5px;
+}
+
+.bar{
+  height:3px;
+  flex:1;
+  background:rgba(255,255,255,.25);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.bar span{
+  display:block;
+  width:0;
+  height:100%;
+  background:white;
+  transition:.5s;
+}
+
+/* FINAL POPUP */
+
+.popup{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(8px);
+}
+
+.popup.show{
+  display:flex;
+}
+
+.popup-box{
+  width:100%;
+  max-width:400px;
+  padding:28px 22px;
+  border-radius:24px;
+  background:rgba(25,25,30,.96);
+  border:1px solid rgba(255,255,255,.2);
+  text-align:center;
+}
+
+.popup-box h2{
+  font-family:Georgia,serif;
+  font-size:30px;
+  font-weight:400;
+  margin-bottom:8px;
+}
+
+.popup-box p{
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+textarea{
+  width:100%;
+  height:130px;
+  resize:none;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.06);
+  color:white;
+  padding:15px;
+  font-size:14px;
+  outline:none;
+}
+
+textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.popup-btn{
+  flex:1;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:14px;
+}
+
+.send{
+  background:rgba(255,255,255,.18);
+}
+
+.thankyou{
+  display:none;
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin-top:18px;
+}
+
+.thankyou.show{
+  display:block;
+}
+
+@media(min-width:700px){
+  .app{
+    max-width:480px;
+    margin:auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- PROGRESS -->
+  <div class="progress" id="progress"></div>
+
+
+  <!-- SLIDE 1 -->
+  <section class="slide active">
+
+    <img src="images/moment1.jpg" class="photo">
+
+    <div class="content">
+
+      <div class="eyebrow">A little something</div>
+
+      <h1>Enri Madam</h1>
+
+      <p>Swalpa time… just tap and see. 🤍</p>
+
+      <button class="next">
+        Enri Madam →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SLIDE 2 - COFFEE -->
+
+  <section class="slide">
+
+    <img src="images/moment2.jpg" class="photo">
+
+    <div class="content">
+
+      <div class="eyebrow">One small question</div>
+
+      <h1>☕</h1>
+
+      <p>Ondu coffee madi kodthira?</p>
+
+      <button class="next">
+        Coffee madi kodthira? ☕🤍 →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SLIDE 3 - SAREE -->
+
+  <section class="slide">
+
+    <img src="images/moment3.jpg" class="photo">
+
+    <div class="content">
+
+      <div class="eyebrow">Just one thing</div>
+
+      <h1>Nan only expectation…</h1>
+
+      <p>Just be genuine. 🤍</p>
+
+      <button class="next">
+        Keep going →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SLIDE 4 -->
+
+  <section class="slide">
+
+    <img src="images/moment4.jpg" class="photo">
+
+    <div class="content">
+
+      <div class="eyebrow">Almost there</div>
+
+      <h1>Sometimes, eyes say more.</h1>
+
+      <p>
+        I don't want to rush anything.
+        I'd rather take my time, know you better,
+        and see where this goes.
+      </p>
+
+      <button class="next">
+        One more… →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL RAIN -->
+
+  <section class="slide">
+
+    <img src="images/rain.jpg" class="photo">
+
+    <div class="content">
+
+      <div class="eyebrow">One last thing</div>
+
+      <h1>
+        Nan jothe walk madthira… lifetime? 🤍
+      </h1>
+
+      <button class="next" id="lifetimeButton">
+        Nan jothe walk madthira… lifetime? 🤍
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+  <div class="popup-box">
+
+    <h2>Nimge en anstho… 🤍</h2>
+
+    <p>
+      Adanna mansinda baribodu.
+    </p>
+
+    <textarea
+      id="message"
+      placeholder="Mansinda bari… 🤍">
+    </textarea>
+
+    <div class="buttons">
+
+      <button class="popup-btn" id="back">
+        Back
+      </button>
+
+      <button class="popup-btn send" id="send">
+        Send 🤍
+      </button>
+
+    </div>
+
+    <div class="thankyou" id="thankyou">
+      Thank you for being genuine. 🤍
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const slides =
+  document.querySelectorAll(".slide");
+
+const nextButtons =
+  document.querySelectorAll(".next");
+
+const progress =
+  document.getElementById("progress");
+
+const popup =
+  document.getElementById("popup");
+
+const lifetimeButton =
+  document.getElementById("lifetimeButton");
+
+const back =
+  document.getElementById("back");
+
+const send =
+  document.getElementById("send");
+
+const message =
+  document.getElementById("message");
+
+const thankyou =
+  document.getElementById("thankyou");
+
+
+let current = 0;
+
+
+/* CREATE PROGRESS BARS */
+
+slides.forEach(() => {
+
+  const bar =
+    document.createElement("div");
+
+  bar.className = "bar";
+
+  bar.innerHTML =
+    "<span></span>";
+
+  progress.appendChild(bar);
+
+});
+
+
+/* UPDATE SLIDE */
+
+function updateSlide(){
+
+  slides.forEach((slide,index)=>{
+
+    slide.classList.toggle(
+      "active",
+      index === current
+    );
+
+  });
+
+
+  const bars =
+    document.querySelectorAll(".bar span");
+
+  bars.forEach((bar,index)=>{
+
+    bar.style.width =
+      index <= current
+      ? "100%"
+      : "0%";
+
+  });
+
+}
+
+
+/* NEXT BUTTONS */
+
+nextButtons.forEach(button => {
+
+  button.addEventListener("click",()=>{
+
+    if(button === lifetimeButton){
+
+      popup.classList.add("show");
+
+      setTimeout(()=>{
+        message.focus();
+      },200);
+
+      return;
+
+    }
+
+
+    if(current < slides.length - 1){
+
+      current++;
+
+      updateSlide();
+
+    }
+
+  });
+
+});
+
+
+/* CLOSE POPUP */
+
+back.addEventListener("click",()=>{
+
+  popup.classList.remove("show");
+
+});
+
+
+/* SEND */
+
+send.addEventListener("click",()=>{
+
+  const text =
+    message.value.trim();
+
+  if(text === ""){
+
+    message.focus();
+
+    return;
+
+  }
+
+
+  /*
+  The message is saved in the browser.
+
+  To receive the message remotely,
+  connect this button to Formspree
+  or another form service.
+  */
+
+  localStorage.setItem(
+    "her_message",
+    text
+  );
+
+
+  message.style.display =
+    "none";
+
+  document.querySelector(
+    ".buttons"
+  ).style.display =
+    "none";
+
+
+  thankyou.classList.add(
+    "show"
+  );
+
+});
+
+
+updateSlide();
+
+</script>
+
+</body>
+</html>
