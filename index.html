@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +103,9 @@ p{
   background:rgba(255,255,255,.1);
   color:white;
   backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   font-size:14px;
+  cursor:pointer;
 }
 
 .next:active{
@@ -137,7 +138,7 @@ p{
   transition:.5s;
 }
 
-/* FINAL POPUP */
+/* POPUP */
 
 .popup{
   position:fixed;
@@ -149,6 +150,7 @@ p{
   padding:25px;
   background:rgba(0,0,0,.7);
   backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 
 .popup.show{
@@ -163,6 +165,7 @@ p{
   background:rgba(25,25,30,.96);
   border:1px solid rgba(255,255,255,.2);
   text-align:center;
+  box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
 .popup-box h2{
@@ -208,6 +211,7 @@ textarea::placeholder{
   background:rgba(255,255,255,.08);
   color:white;
   font-size:14px;
+  cursor:pointer;
 }
 
 .send{
@@ -218,6 +222,7 @@ textarea::placeholder{
   display:none;
   font-family:Georgia,serif;
   font-size:25px;
+  line-height:1.3;
   margin-top:18px;
 }
 
@@ -229,6 +234,7 @@ textarea::placeholder{
   .app{
     max-width:480px;
     margin:auto;
+    box-shadow:0 0 60px #000;
   }
 }
 </style>
@@ -238,22 +244,29 @@ textarea::placeholder{
 
 <div class="app">
 
-  <!-- PROGRESS -->
+  <!-- PROGRESS BARS -->
   <div class="progress" id="progress"></div>
 
 
-  <!-- SLIDE 1 -->
+  <!-- FIRST IMAGE -->
+
   <section class="slide active">
 
-    <img src="images/moment1.jpg" class="photo">
+    <img src="moment1.jpg" class="photo" alt="">
 
     <div class="content">
 
-      <div class="eyebrow">A little something</div>
+      <div class="eyebrow">
+        A little something
+      </div>
 
-      <h1>Enri Madam</h1>
+      <h1>
+        Enri Madam
+      </h1>
 
-      <p>Swalpa time… just tap and see. 🤍</p>
+      <p>
+        Swalpa time… just tap and see. 🤍
+      </p>
 
       <button class="next">
         Enri Madam →
@@ -264,19 +277,25 @@ textarea::placeholder{
   </section>
 
 
-  <!-- SLIDE 2 - COFFEE -->
+  <!-- COFFEE IMAGE -->
 
   <section class="slide">
 
-    <img src="images/moment2.jpg" class="photo">
+    <img src="moment2.jpg" class="photo" alt="">
 
     <div class="content">
 
-      <div class="eyebrow">One small question</div>
+      <div class="eyebrow">
+        One small question
+      </div>
 
-      <h1>☕</h1>
+      <h1>
+        ☕
+      </h1>
 
-      <p>Ondu coffee madi kodthira?</p>
+      <p>
+        Ondu coffee madi kodthira?
+      </p>
 
       <button class="next">
         Coffee madi kodthira? ☕🤍 →
@@ -287,19 +306,25 @@ textarea::placeholder{
   </section>
 
 
-  <!-- SLIDE 3 - SAREE -->
+  <!-- SAREE IMAGE -->
 
   <section class="slide">
 
-    <img src="images/moment3.jpg" class="photo">
+    <img src="moment3.jpg" class="photo" alt="">
 
     <div class="content">
 
-      <div class="eyebrow">Just one thing</div>
+      <div class="eyebrow">
+        Just one thing
+      </div>
 
-      <h1>Nan only expectation…</h1>
+      <h1>
+        Nan only expectation…
+      </h1>
 
-      <p>Just be genuine. 🤍</p>
+      <p>
+        Just be genuine. 🤍
+      </p>
 
       <button class="next">
         Keep going →
@@ -310,17 +335,21 @@ textarea::placeholder{
   </section>
 
 
-  <!-- SLIDE 4 -->
+  <!-- FOURTH IMAGE -->
 
   <section class="slide">
 
-    <img src="images/moment4.jpg" class="photo">
+    <img src="moment4.jpg" class="photo" alt="">
 
     <div class="content">
 
-      <div class="eyebrow">Almost there</div>
+      <div class="eyebrow">
+        Almost there
+      </div>
 
-      <h1>Sometimes, eyes say more.</h1>
+      <h1>
+        Sometimes, eyes say more.
+      </h1>
 
       <p>
         I don't want to rush anything.
@@ -337,15 +366,17 @@ textarea::placeholder{
   </section>
 
 
-  <!-- FINAL RAIN -->
+  <!-- FINAL RAIN IMAGE -->
 
   <section class="slide">
 
-    <img src="images/rain.jpg" class="photo">
+    <img src="rain.jpg" class="photo" alt="">
 
     <div class="content">
 
-      <div class="eyebrow">One last thing</div>
+      <div class="eyebrow">
+        One last thing
+      </div>
 
       <h1>
         Nan jothe walk madthira… lifetime? 🤍
@@ -362,13 +393,15 @@ textarea::placeholder{
 </div>
 
 
-<!-- POPUP -->
+<!-- RESPONSE POPUP -->
 
 <div class="popup" id="popup">
 
   <div class="popup-box">
 
-    <h2>Nimge en anstho… 🤍</h2>
+    <h2>
+      Nimge en anstho… 🤍
+    </h2>
 
     <p>
       Adanna mansinda baribodu.
@@ -429,7 +462,6 @@ const message =
 const thankyou =
   document.getElementById("thankyou");
 
-
 let current = 0;
 
 
@@ -463,7 +495,6 @@ function updateSlide(){
 
   });
 
-
   const bars =
     document.querySelectorAll(".bar span");
 
@@ -494,9 +525,7 @@ nextButtons.forEach(button => {
       },200);
 
       return;
-
     }
-
 
     if(current < slides.length - 1){
 
@@ -511,7 +540,7 @@ nextButtons.forEach(button => {
 });
 
 
-/* CLOSE POPUP */
+/* BACK FROM POPUP */
 
 back.addEventListener("click",()=>{
 
@@ -520,7 +549,7 @@ back.addEventListener("click",()=>{
 });
 
 
-/* SEND */
+/* SEND RESPONSE */
 
 send.addEventListener("click",()=>{
 
@@ -535,20 +564,15 @@ send.addEventListener("click",()=>{
 
   }
 
-
   /*
-  The message is saved in the browser.
-
-  To receive the message remotely,
-  connect this button to Formspree
-  or another form service.
+    For now the message is stored
+    locally in the browser.
   */
 
   localStorage.setItem(
     "her_message",
     text
   );
-
 
   message.style.display =
     "none";
@@ -558,7 +582,6 @@ send.addEventListener("click",()=>{
   ).style.display =
     "none";
 
-
   thankyou.classList.add(
     "show"
   );
@@ -566,9 +589,11 @@ send.addEventListener("click",()=>{
 });
 
 
+/* START */
+
 updateSlide();
 
 </script>
 
 </body>
-</html>
+  </html>
